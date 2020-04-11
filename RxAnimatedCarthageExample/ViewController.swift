@@ -7,14 +7,30 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxAnimated
 
 class ViewController: UIViewController {
+    private let bag = DisposeBag()
+    private let label = UILabel()
+    private let timer = Observable<Int>.timer(RxTimeInterval.seconds(0), period: RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        
+        // Animate `text` with a crossfade
+        timer
+            .map { "Text + fade [\($0)]" }
+            .bind(animated: label.rx.animated.fade(duration: 0.33).text)
+            .disposed(by: bag)
     }
-
-
 }
 
