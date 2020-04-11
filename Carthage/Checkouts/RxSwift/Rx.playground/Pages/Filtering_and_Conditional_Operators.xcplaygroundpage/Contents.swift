@@ -1,13 +1,13 @@
 /*:
  > # IMPORTANT: To use **Rx.playground**:
  1. Open **Rx.xcworkspace**.
- 1. Build the **RxExample-macOS** scheme (**Product** → **Build**).
+ 1. Build the **RxPlaygrounds** scheme for **Mac** (**Product** → **Build**).
  1. Open **Rx** playground in the **Project navigator** (under RxExample project).
  1. Show the Debug Area (**View** → **Debug Area** → **Show Debug Area**).
  ----
  [Previous](@previous) - [Table of Contents](Table_of_Contents)
  */
-import RxSwift
+import RxPlaygrounds
 /*:
 # Filtering and Conditional Operators
 Operators that selectively emit elements from a source `Observable` sequence.
@@ -194,9 +194,9 @@ example("skipWhileWithIndex") {
     let disposeBag = DisposeBag()
     
     Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵")
-        .enumerated()
-        .skipWhile { $0.index < 3 }
-        .map { $0.element }
+        .skipWhileWithIndex { element, index in
+            index < 3
+        }
         .subscribe(onNext: { print($0) })
         .disposed(by: disposeBag)
 }

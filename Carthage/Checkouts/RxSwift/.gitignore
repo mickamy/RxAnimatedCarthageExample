@@ -20,7 +20,6 @@ DerivedData
 *.o
 
 timeline.xctimeline
-.vscode
 
 # CocoaPods
 #
@@ -52,7 +51,3 @@ Carthage/Build
 
 .build/
 Packages/
-
-# AppCode
-
-.idea
