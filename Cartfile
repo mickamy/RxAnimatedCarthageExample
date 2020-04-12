@@ -1,2 +1,2 @@
 github "ReactiveX/RxSwift"
-github "mickamy/RxAnimated" "trying"
+github "RxSwiftCommunity/RxAnimated"
